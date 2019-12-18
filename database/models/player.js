@@ -7,6 +7,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   player.associate = function(models) {
     // associations can be defined here
+    player.hasMany(models.Post, {
+      foreignKey: 'userId',
+      as: 'posts',
+      onDelete: 'CASCADE',
+    });
+
+    player.hasMany(models.Comment, {
+      foreignKey: 'userId',
+      as: 'comments',
+      onDelete: 'CASCADE',
+    });
   };
   return player;
 };
